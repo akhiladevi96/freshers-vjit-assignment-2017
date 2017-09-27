@@ -1,0 +1,150 @@
+
+import java.util.*;
+public class Example {
+	
+	int t[]=new int[10];
+	int i,sum;
+	int q;
+	String start=null;
+	String str=null;
+	Example()
+	{
+		for(i=0;i<t.length;i++)
+		t[i]=0;
+		sum=0;
+	}
+	
+	void allocateTable(String s)
+	{// Example e=null;
+	for(i=0;i<t.length;i++)
+	if(t[i]==0)
+	{
+		System.out.println(s+" is allotted with table no."+(i+1));
+		t[i]=1;
+		busBoy(t[i]);
+		break;
+	}
+	
+	}
+	void display(int t)
+	{
+		System.out.println("MENU "+t);
+		int c;
+		
+		Scanner s=new Scanner(System.in); 
+		do
+		{System.out.println("1.Starters 2.Maincourse 3.Desserts\nenter ur choice");
+		int ch=s.nextInt();
+		switch(ch)
+		{
+		case 1:
+		System.out.println("Starters");
+		System.out.println("1:chickenLollipop----------180(6pieces)");
+		System.out.println("2.Kabbabas-------------------120");
+		start=s.next();
+		break;
+		case 2:
+		System.out.println("MainCourse");
+		System.out.println("ChickenBiryani---------220(single)");
+		start=s.next();
+		break;
+		case 3:
+		System.out.println("Desserts");
+		System.out.println("Turtle Burnt Cake--------100");
+		start=s.next();
+		break;
+		}
+		//String c;
+		placeOrder(start,t);
+		System.out.println("ENTER 1 To Order More Items else 0");
+		c=s.nextInt();
+		}while(c==1);
+		sendChef(t);
+	}
+	void sendChef(int t)
+	{
+		System.out.println("Order prepared for "+t);
+		serveBoys(t);
+	}
+	void serveBoys(int t)
+	{
+		System.out.println("Order Served for "+t);
+		payment(t);
+		
+	}
+	void payment(int t)
+	{
+		System.out.println("Total amount "+sum);
+		feedback(t);
+		
+	}
+	void feedback(int t)
+	{
+	Scanner b=new Scanner(System.in);
+	int rate;
+	String comment=null;
+	System.out.println("give rating on the scale of 5");
+	rate=b.nextInt();
+	System.out.println("please mention any suggestions");
+	comment=b.next();
+	System.out.println("Feedback stored "+t);
+	System.out.println("THANK YOU!VISIT AGAIN");
+	cleanBoys(t);
+	}
+   void cleanBoys(int t)
+   {
+	   System.out.println("Table "+" is Cleaned and empty");
+	   
+   }
+	void placeOrder(String s,int t)
+	{ Scanner a=new Scanner(System.in);
+	
+		if(s.equals("chickenLollipop"))
+		{
+			System.out.println("enter quantity");
+			q=a.nextInt();
+			sum+=q*180;
+		}
+		if(s.equals("kabbabs"))
+		{
+			System.out.println("enter quantity");
+			q=a.nextInt();
+			sum+=q*120;
+		}
+		if(s.equals("chickenBiryani"))
+		{
+			System.out.println("enter quantity");
+			q=a.nextInt();
+			sum+=q*220;
+		}
+		if(s.equals("Turtle Burnt Cake"))
+		{
+			System.out.println("enter quantity");
+			q=a.nextInt();
+			sum+=q*100;
+		}
+	}
+	String busBoy(int t)
+	{
+		System.out.println("Served water for table "+t);
+		display(t);
+		return null;
+	}
+public static void main(String args[])
+{int ch;
+Example e=new Example();
+	do{
+	Scanner sc=new Scanner(System.in);
+	String str=sc.next();
+	
+	e.allocateTable(str);
+	System.out.println("Enter 0 to add more names else enter 1");
+	 ch=sc.nextInt();
+	//System.out.println(str);
+	//System.out.println(m);
+	//e.display();
+	 
+	}while(ch!=1);
+	
+}
+}
